@@ -1,3 +1,8 @@
+/* App */
+.app{
+    width: 98vw;
+    overflow-x: hidden;
+}
 /* Header */
 .header-comp{
     display:flex;
@@ -31,6 +36,7 @@
 
 /* Card Container */
 .cardContainer-comp{
+    width: 98vw;
     display:flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -38,10 +44,10 @@
 
 /* Card */
 .card{
-    width:150px;
+    width:250px;
     height: 250px;
     text-align: center;
-    border: 1px solid grey;
     padding: 10px;
     margin: 20px 10px;
+    display: inline-block; /* Add this line */
 }

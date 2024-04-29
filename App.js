@@ -1,5 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import swiggyData from "./swiggyapi";
+
+console.log(swiggyData)
 
 // HEADER
 const Header = () => {
@@ -18,16 +21,9 @@ const Header = () => {
     )
 }
 
-const Card = () =>{
-    return(
-        <div className="card">
-            <img width="100%" height="120px"src="https://glebekitchen.com/wp-content/uploads/2019/12/chickenbiryanibowltop.jpg"/>
-            <p>Briyani</p>
-            <p>4 stars</p>
-            <p>Rs 250</p>
-        </div>
-    )
-}
+
+
+
 // BODY
 const Body = () => {
     return (
@@ -37,24 +33,26 @@ const Body = () => {
                 <button>Search</button>
             </div>
             <div className="cardContainer-comp">
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
+                {swiggyData.map((data)=>(
+                    <Card data={data} key={data.info.id}/>
+                ))}
             </div>      
         </div>
+    )
+}
+
+const Card = (props) =>{
+    const {data} = props;
+    const {name,avgRating,costForTwo,cloudinaryImageId} = data.info
+    return (
+        
+        <div className="card" style={{backgroundColor:"",boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px"}}>
+            <img width="100%" height="120px"src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${cloudinaryImageId}`}/>
+            <p>{name}</p>
+            <p>{avgRating}</p>
+            <p>{costForTwo}</p>    
+        </div>
+        
     )
 }
 
