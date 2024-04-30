@@ -6,31 +6,35 @@ import Shimmer from "./Shimmer";
 const Body = () => {
 
     const [restaurantList,setrestaurantList] = useState([]);
+    const [searchInput,setsearchInput] = useState("");
+    const [searchList,setsearchList] = useState([])
 
     const handleAllRestaurants = () => {
-        const allRestaurants = swiggyData
-        setrestaurantList(allRestaurants)
+        setsearchList(restaurantList)
     }
     const handleRatings = () =>{
-        setrestaurantList(swiggyData)
-        const filterRatings = swiggyData.filter(rate => rate.info.avgRating >= 4.3);
-        setrestaurantList(filterRatings);
+        const filterRatings = restaurantList.filter(rate => rate.info.avgRating >= 4.3);
+        setsearchList(filterRatings);
     }
     const handleCost = () =>{
-        setrestaurantList(swiggyData)
-        const filterCost = swiggyData.filter(item => {
+        const filterCost = restaurantList.filter(item => {
             const costForTwo = Number(item.info.costForTwo.replace(/\D/g, ''));
             return costForTwo < 250;
         });         
-        setrestaurantList(filterCost);
+        setsearchList(filterCost);
     }
     const handleDeliveryTime = () =>{
-        setrestaurantList(swiggyData)
-        const filterDeliveryTime = swiggyData.filter(item =>{
+        const filterDeliveryTime = restaurantList.filter(item =>{
             const deliveryTime = item.info.sla.deliveryTime
             return deliveryTime <= 30;
         });
-        setrestaurantList(filterDeliveryTime)
+        setsearchList(filterDeliveryTime)
+    }
+    const handleSearch = () =>{
+        const searchResult = restaurantList.filter( item =>                 // Here we are just filtering the data of "restaurantList" and storing it in a local variable but not updating the "restaurantList" variable.
+            item.info.name.toLowerCase().includes(searchInput.toLowerCase())
+        )
+        setsearchList(searchResult)                                         // So everytime we search something, it is going to filter from the full data which is always available in "restaurantList".
     }
 
     useEffect(()=>{
@@ -41,14 +45,15 @@ const Body = () => {
         const swiggyApi = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.89960&lng=80.22090&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
         const swiggyApiData = await swiggyApi.json();
         const restaurantsFromApi = swiggyApiData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-        setrestaurantList(restaurantsFromApi);
+        setrestaurantList(restaurantsFromApi);                               // We are setting the API value for "restaurantList" variable only once. And never updating it.
+        setsearchList(restaurantsFromApi);                                   // We are setting the API value for "searchList".
     }
 
     return restaurantList.length === 0 ? (< Shimmer/> ) : (
         <div className="body">
             <div className="search-comp">
-                <input/>
-                <button>Search</button>
+                <input type="text" onChange={(e)=>{setsearchInput(e.target.value)}}/> 
+                <button onClick={handleSearch}>Search</button>
             </div>
             <div>
                 <button onClick={handleAllRestaurants}>All Restaurants</button>
@@ -57,7 +62,7 @@ const Body = () => {
                 <button onClick={handleDeliveryTime}>Less Delivery Time</button>
             </div>
             <div className="cardContainer-comp">
-                {restaurantList.map((data)=>(
+                {searchList.map((data)=>(                                    // Mapping and displaying "searchList" data.
                     <Card data={data} key={data.info.id}/>
                 ))}
             </div>      
