@@ -1,5 +1,6 @@
 import Card from "./Card";
 import {useState,useEffect} from "react";
+import Shimmer from "./Shimmer";
 
 // BODY
 const Body = () => {
@@ -42,12 +43,8 @@ const Body = () => {
         const restaurantsFromApi = swiggyApiData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
         setrestaurantList(restaurantsFromApi);
     }
-    
-    // if(restaurantList.length === 0){
-    //     return ( <h1>Loading...</h1>)
-    // }
-    
-    return restaurantList.length === 0 ? (<h1>Loading...</h1>) : (
+
+    return restaurantList.length === 0 ? (< Shimmer/> ) : (
         <div className="body">
             <div className="search-comp">
                 <input/>

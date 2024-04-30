@@ -51,3 +51,23 @@
     margin: 20px 10px;
     display: inline-block; /* Add this line */
 }
+
+/* Shimmer Container */
+.shimmer-container{
+    margin-top: 100px;
+    width: 98vw;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+/* Shimmer Card */
+.shimmer-card{
+    width:250px;
+    height: 250px;
+    text-align: center;
+    padding: 10px;
+    margin: 20px 10px;
+    display: inline-block; /* Add this line */
+    background-color: #f0f0f0;
+}
