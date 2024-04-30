@@ -43,7 +43,11 @@ const Body = () => {
         setrestaurantList(restaurantsFromApi);
     }
     
-    return (
+    // if(restaurantList.length === 0){
+    //     return ( <h1>Loading...</h1>)
+    // }
+    
+    return restaurantList.length === 0 ? (<h1>Loading...</h1>) : (
         <div className="body">
             <div className="search-comp">
                 <input/>
