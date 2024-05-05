@@ -9,7 +9,7 @@ const Card = (props) =>{
             <img width="100%" height="120px"src={`${IMG_URL}${cloudinaryImageId}`}/>
             <p>{name}</p>
             <p>{avgRating}</p>
-            <p>{costForTwo}</p>    
+            <p>{costForTwo}</p>  
         </div>
         
     )

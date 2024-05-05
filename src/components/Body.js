@@ -1,6 +1,7 @@
 import Card from "./Card";
 import {useState,useEffect} from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 // BODY
 const Body = () => {
@@ -63,8 +64,8 @@ const Body = () => {
             </div>
             <div className="cardContainer-comp">
                 {searchList.length === 0 && <h1>No Results</h1>}
-                {searchList.map((data)=>(                                    // Mapping and displaying "searchList" data.
-                    <Card data={data} key={data.info.id}/>
+                {searchList.map((data)=>(  
+                    <Link to={"/restaurants/"+data.info.id} key={data.info.id}><Card data={data} /></Link>                                  // Mapping and displaying "searchList" data.   
                 ))}
             </div>      
         </div>
