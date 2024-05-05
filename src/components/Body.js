@@ -19,9 +19,9 @@ const Body = () => {
     const handleCost = () =>{
         const filterCost = restaurantList.filter(item => {
             const costForTwo = Number(item.info.costForTwo.replace(/\D/g, ''));
-            return costForTwo < 250;
+            return costForTwo < 250; 
         });         
-        setsearchList(filterCost);
+        setsearchList(filterCost);    
     }
     const handleDeliveryTime = () =>{
         const filterDeliveryTime = restaurantList.filter(item =>{
@@ -62,6 +62,7 @@ const Body = () => {
                 <button onClick={handleDeliveryTime}>Less Delivery Time</button>
             </div>
             <div className="cardContainer-comp">
+                {searchList.length === 0 && <h1>No Results</h1>}
                 {searchList.map((data)=>(                                    // Mapping and displaying "searchList" data.
                     <Card data={data} key={data.info.id}/>
                 ))}

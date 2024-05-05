@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { Link } from "react-router-dom";
 
 // HEADER
 const Header = () => {
@@ -8,10 +9,10 @@ const Header = () => {
             <div>LOGO</div>
             <div className="header-right">
                 <ul>
-                    <li>Home</li>
-                    <li>About Us</li>
-                    <li>Contact</li>
-                    <li>Login</li>
+                    <li><Link to='/'>Home</Link></li>
+                    <li><Link to='/about'>About Us</Link></li>
+                    <li><Link to='/contact'>Contact</Link></li>
+                    <li><Link>Login</Link></li>
                 </ul>
             </div>
         </div>
