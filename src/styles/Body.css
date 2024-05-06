@@ -1,0 +1,46 @@
+/* Search & Filters*/
+.search-filter{
+    display:flex;
+    justify-content:space-between;
+    margin: 30px 150px;
+    align-items: center;
+}
+.filter-comp{
+    flex:0.7;
+}
+.search-comp{
+    flex: 0.3;
+}
+.filter-comp button{
+    width:120px;
+    padding:10px;
+    border:none;
+    border-radius:20px;
+    margin: 0px 20px;
+    cursor: pointer;
+    background-color:white;
+    border: 1px solid #f0f0f0;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+.search-comp input{
+    width:70%;
+    height: 27px;
+    border: 1px solid #f0f0f0;
+}
+.search-comp button{
+    width: 25%;
+    height: 30px;
+    border:none;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+
+
+/* Card Container */
+.cardContainer-comp{
+    margin: 10px 100px;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
