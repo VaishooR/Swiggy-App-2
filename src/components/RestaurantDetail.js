@@ -23,7 +23,7 @@ const RestaurantDetail = () => {
   }, []);
 
   const fetchRestaurantDetail = async () => {
-    const resDetailApi = await fetch('https://corsproxy.io/?' + encodeURIComponent(`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.89960&lng=80.22090&restaurantId=${resId}&catalog_qa=undefined&isMenuUx4=true&submitAction=ENTER`));
+    const resDetailApi = await fetch(`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.89960&lng=80.22090&restaurantId=${resId}&catalog_qa=undefined&isMenuUx4=true&submitAction=ENTER`);
     const resDetailApiJson = await resDetailApi?.json();
     setrestaurantDetail(resDetailApiJson?.data?.cards[2]?.card?.card?.info);
     setcategories(resDetailApiJson?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
