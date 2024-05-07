@@ -51,7 +51,7 @@ const Body = () => {
     },[])
 
     const fetchData = async () =>{
-        const swiggyApi = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.89960&lng=80.22090&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+        const swiggyApi = await fetch('https://corsproxy.io/?' + encodeURIComponent("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.89960&lng=80.22090&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"));
         const swiggyApiData = await swiggyApi?.json();
         const restaurantsFromApi = swiggyApiData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
         setrestaurantList(restaurantsFromApi);                               // We are setting the API value for "restaurantList" variable only once. And never updating it.
