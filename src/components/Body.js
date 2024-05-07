@@ -67,7 +67,7 @@ const Body = () => {
                     <button onClick={handleRatings}>Top Ratings</button>
                     <button onClick={handleCost}>Less Cost</button>
                     <button onClick={handleDeliveryTime}>Fast Delivery</button>
-                    <button onClick={handleNearBy}>Near By</button>
+                    {/* <button onClick={handleNearBy}>Near By</button> */}
                 </div>
                 <div className="search-comp">
                     <input type="text" onChange={(e)=>{setsearchInput(e.target.value)}}/> 
