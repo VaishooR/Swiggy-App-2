@@ -7,9 +7,13 @@ import { GoHome } from "react-icons/go";
 import { RiDiscountPercentLine } from "react-icons/ri";
 import { IoHelpBuoyOutline } from "react-icons/io5";
 import { IoPersonOutline } from "react-icons/io5";
+import useOnline from "../hooks/useOnline";
 
 // HEADER
 const Header = () => {
+
+    const onlineStatus = useOnline();
+    
     return (
         <div className="header-comp">
             <div className="header-logo">
@@ -23,6 +27,7 @@ const Header = () => {
                     <li><Link to='/contact'><IoHelpBuoyOutline className='icon'/>Help</Link></li>
                     <li><Link><IoPersonOutline className='icon'/>Sign in</Link></li>
                     <li><Link><BsCart2 className='icon'/>Cart</Link></li>
+                    {onlineStatus? <li>Online ✅</li> : <li>Offline 🔴</li>}
                 </ul>
             </div>
         </div>
