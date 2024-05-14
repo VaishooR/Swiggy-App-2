@@ -35,6 +35,9 @@ const MenuCard = ({mainCategories}) => {
                     src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/${imageId}`}
                     alt="No Image"
                   />
+                  <div>                  
+                    <button className='menu-img-btn'>Add</button>
+                  </div>
                 </div>
               </div>
             );

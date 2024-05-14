@@ -70,6 +70,7 @@
     flex-direction:column;
     justify-content:space-evenly;
     height:160px;
+    width: 80%;
 }
 .menu-item-offer{
     font-weight: 600;
@@ -86,10 +87,33 @@
     overflow: hidden;
     width:80%;
 }
+.menu-img{
+    position: relative;
+}
 .menu-img img{
     width: 180px;
     height: 150px;
     border-radius: 20px;
+}
+.menu-img-btn{
+    color:rgb(40, 179, 40);
+    padding:10px 50px;
+    border:1px solid gainsboro;
+    position: absolute;
+    bottom:-15px;
+    left:13%;
+    border-radius: 10px;
+    cursor: pointer;
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 16px;
+    background-color: white;
+}
+.menu-img-btn:hover{
+    background-color:rgb(233, 232, 232);
+    color: green;
+    font-size: 15px;
 }
 
 
