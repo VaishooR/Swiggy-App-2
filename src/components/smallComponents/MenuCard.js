@@ -1,8 +1,17 @@
 import React from 'react'
 import AccordionFunc from './Accordion';
 import star from '../../assets/star.png';
+import { useDispatch } from 'react-redux';
+import { addCartItem } from '../../store/cartSlice';
 
 const MenuCard = ({mainCategories}) => {
+
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (item) => {
+      dispatch(addCartItem(item))
+  }
+
   return (
     <div className="resMenu-menuCard">
 
@@ -14,14 +23,14 @@ const MenuCard = ({mainCategories}) => {
           const itemCards = item?.card?.card?.itemCards;
 
           const itemCardsItems = itemCards?.map((item) => {
-            const { name, price, ratings, description, imageId } = item?.card?.info;
+            const { name, price, ratings, description, imageId, defaultPrice } = item?.card?.info;
 
             // Return Cards for All Dishes in a Category
             return (
               <div className="menu-item">
                 <div className="menu-item-text">
                   <div>{name}</div>
-                  <div>Rs {price / 100} </div>
+                  <div>Rs {defaultPrice / 100 || price/100} </div>
                   <div>
                     <img src={star} />
                     {ratings?.aggregatedRating?.rating} (
@@ -36,7 +45,7 @@ const MenuCard = ({mainCategories}) => {
                     alt="No Image"
                   />
                   <div>                  
-                    <button className='menu-img-btn'>Add</button>
+                    <button className='menu-img-btn'onClick={()=>handleAddToCart(item.card.info)}>Add</button>
                   </div>
                 </div>
               </div>
