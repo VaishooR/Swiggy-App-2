@@ -111,7 +111,7 @@ const Body = () => {
             </div>
 
             {showShimmer && <Shimmer/>}  
-            {searchList.length === 0 && <h1 style={{textAlign: 'center'}}>No Results</h1>}
+            {searchList.length === 0 && <h1 style={{textAlign: 'center',marginBottom:"375px"}}>No Results</h1>}           
     
         </div>
     )
