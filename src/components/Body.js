@@ -9,7 +9,8 @@ const Body = () => {
 
     const [restaurantList,setrestaurantList] = useState([]);
     const [searchInput,setsearchInput] = useState("");
-    const [searchList,setsearchList] = useState([])
+    const [searchList,setsearchList] = useState([]);
+    const [showShimmer,setshowShimmer] = useState(false);
 
     const handleAllRestaurants = () => {
         setsearchList(restaurantList)
@@ -48,17 +49,30 @@ const Body = () => {
 
     useEffect(()=>{
         fetchData();
+        window.addEventListener("scroll",handleScroll);
+        return ()=> window.removeEventListener("scroll",handleScroll);
     },[])
 
+    const handleScroll = () => {
+        if( window.scrollY + window.innerHeight >= document.body.scrollHeight){
+            fetchData();
+        }
+    }
+
     const fetchData = async () =>{
+        setshowShimmer(true)
         const swiggyApi = await fetch("https://foodfire.onrender.com/api/restaurants?lat=12.89960&lng=80.22090&page_type=DESKTOP_WEB_LISTING");
         const swiggyApiData = await swiggyApi?.json();
         const restaurantsFromApi = swiggyApiData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-        setrestaurantList(restaurantsFromApi);                               // We are setting the API value for "restaurantList" variable only once. And never updating it.
-        setsearchList(restaurantsFromApi);                                   // We are setting the API value for "searchList".
+        setshowShimmer(false)
+        // setrestaurantList(restaurantsFromApi);                               // We are setting the API value for "restaurantList" variable only once. And never updating it.
+        // setsearchList(restaurantsFromApi);                                   // We are setting the API value for "searchList".
+        setrestaurantList((restaurantList)=>[...restaurantList,...restaurantsFromApi]); 
+        setsearchList((searchList)=>[...searchList,...restaurantsFromApi]); 
     }
 
-    return restaurantList.length === 0 ? (< Shimmer/> ) : (
+    // restaurantList.length === 0 ? (< Shimmer/> ) :
+    return  (
         <div className="body">
             <div className="search-filter">
                 
@@ -77,11 +91,13 @@ const Body = () => {
             </div>
             
             <div className="cardContainer-comp">
-                {searchList.length === 0 && <h1>No Results</h1>}
+                {/* {searchList.length === 0 && <h1>No Results</h1>} */}
                 {searchList?.map((data)=>(  
                     <Link to={"/restaurants/"+data.info.id} key={data.info.id}><Card data={data} /></Link>                                  // Mapping and displaying "searchList" data.   
                 ))}
-            </div>      
+            </div>
+
+            {showShimmer && <Shimmer/>}      
         </div>
     )
 }
