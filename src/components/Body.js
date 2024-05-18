@@ -11,6 +11,11 @@ const Body = () => {
     const [searchInput,setsearchInput] = useState("");
     const [searchList,setsearchList] = useState([]);
     const [showShimmer,setshowShimmer] = useState(false);
+    const [activeButton, setActiveButton] = useState('all');
+
+    const handleButtonClick = (buttonName) => {
+        setActiveButton(buttonName);
+    }
 
     const handleAllRestaurants = () => {
         setsearchList(restaurantList)
@@ -78,14 +83,22 @@ const Body = () => {
     return  (
         <div className="body">
             <div className="search-filter">
-                
+
                 <div className="filter-comp">
-                    <button onClick={handleAllRestaurants}>All Restaurants</button>
-                    <button onClick={handleRatings}>Top Ratings</button>
-                    <button onClick={handleCost}>Less Cost</button>
-                    <button onClick={handleDeliveryTime}>Fast Delivery</button>
-                    <button onClick={handleNearBy}>Near By</button>
+                    <button onClick={()=>{handleButtonClick('all');handleAllRestaurants()}}
+                        className={activeButton == 'all' ? 'active-filter-btn' : 'filterBtn-inactive'} 
+                    >All Restaurants</button>
+                    <button onClick={()=>{handleButtonClick('rating');handleRatings()}}
+                        className={activeButton == 'rating' ? 'active-filter-btn' : 'filterBtn-inactive'}
+                    >Top Ratings</button>
+                    <button onClick={()=>{handleButtonClick('cost');handleCost()}}
+                        className={activeButton == 'cost' ? 'active-filter-btn' : 'filterBtn-inactive'}>Less Cost</button>
+                    <button onClick={()=>{handleButtonClick('delivery');handleDeliveryTime()}}
+                        className={activeButton == 'delivery' ? 'active-filter-btn' : 'filterBtn-inactive'}>Fast Delivery</button>
+                    <button onClick={()=>{handleButtonClick('near');handleNearBy()}}
+                        className={activeButton == 'near' ? 'active-filter-btn' : 'filterBtn-inactive'}>Near By</button>
                 </div>
+                
                 <div className="search-comp">
                     <input type="text" onChange={(e)=>{setsearchInput(e.target.value)}}/> 
                     <button onClick={handleSearch}>Search</button>
