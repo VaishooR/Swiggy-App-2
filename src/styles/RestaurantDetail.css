@@ -110,6 +110,22 @@
     font-size: 16px;
     background-color: white;
 }
+.remove-btn{
+    background-color:rgb(248, 83, 83);
+    padding:10px 34px;
+    border:1px solid rgb(248, 83, 83);
+    position: absolute;
+    bottom:-15px;
+    left:13%;
+    border-radius: 10px;
+    cursor: pointer;
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 15px;
+    color: white;
+
+}
 .menu-img-btn:hover{
     background-color:rgb(233, 232, 232);
     color: green;
