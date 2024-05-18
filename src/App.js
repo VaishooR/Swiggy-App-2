@@ -12,6 +12,7 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { Provider } from "react-redux";
 import appStore from "./store/appStore";
 import Cart from "./components/Cart";
+import SignIn from "./components/SignIn";
 
 const App=()=>{
     return(
@@ -33,6 +34,7 @@ const appRouter = createBrowserRouter([
       { path:"/about", element: <About/>},
       { path:"/offers", element: <Offers/>},
       { path:"/contact", element: <Contact/>},
+      { path:"/signin", element: <SignIn/>},
       { path:"/cart", element: <Cart/>},
       { path:"/restaurants/:resId", element: <RestaurantDetail/>}
     ],

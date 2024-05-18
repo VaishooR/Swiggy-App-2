@@ -1,6 +1,6 @@
 const Contact = () => {
     return (
-        <div> Contact </div>
+        <h1 style={{textAlign: 'center',paddingTop: '40px',minHeight: '60vh'}}> Contact Page</h1>
     )
 }
 export default Contact;

@@ -86,11 +86,9 @@ const Body = () => {
 
                 <div className="filter-comp">
                     <button onClick={()=>{handleButtonClick('all');handleAllRestaurants()}}
-                        className={activeButton == 'all' ? 'active-filter-btn' : 'filterBtn-inactive'} 
-                    >All Restaurants</button>
+                        className={activeButton == 'all' ? 'active-filter-btn' : 'filterBtn-inactive'}>All Restaurants</button>
                     <button onClick={()=>{handleButtonClick('rating');handleRatings()}}
-                        className={activeButton == 'rating' ? 'active-filter-btn' : 'filterBtn-inactive'}
-                    >Top Ratings</button>
+                        className={activeButton == 'rating' ? 'active-filter-btn' : 'filterBtn-inactive'}>Top Ratings</button>
                     <button onClick={()=>{handleButtonClick('cost');handleCost()}}
                         className={activeButton == 'cost' ? 'active-filter-btn' : 'filterBtn-inactive'}>Less Cost</button>
                     <button onClick={()=>{handleButtonClick('delivery');handleDeliveryTime()}}
