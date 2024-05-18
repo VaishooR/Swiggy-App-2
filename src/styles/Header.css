@@ -46,3 +46,13 @@
     margin-left:5px;
     border-radius: 3px;
 }
+
+.active-navbar-item{
+    text-decoration: underline;
+    text-decoration-color: orange;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 10px;
+}
+.cartNav-active{
+    text-decoration: none;
+}

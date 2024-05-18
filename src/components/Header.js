@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import '../styles/Header.css';
 import { BsBag,BsCart2 } from "react-icons/bs";
 import { GoHome } from "react-icons/go";
@@ -12,6 +12,8 @@ import { useSelector } from "react-redux";
 
 // HEADER
 const Header = () => {
+    
+    const {pathname} = useLocation();
 
     const onlineStatus = useOnline();
 
@@ -24,12 +26,24 @@ const Header = () => {
             </div>
             <div className="header-right">
                 <ul>
-                    <li><Link to='/'><GoHome className='icon'/>Home</Link></li>
-                    <li><Link to='/about'><BsBag className='icon'/>Swiggy Corporate</Link></li>
-                    <li><Link to='/offers'><RiDiscountPercentLine className='icon'/>Offers</Link></li>
-                    <li><Link to='/contact'><IoHelpBuoyOutline className='icon'/>Help</Link></li>
-                    <li><Link><IoPersonOutline className='icon'/>Sign in</Link></li>
-                    <li><Link to='/cart'><BsCart2 className='icon'/>Cart <span className="cart-count">{cart?.length}</span></Link></li>
+                    <li className={pathname == '/' && "active-navbar-item"} >
+                        <Link to='/'><GoHome className='icon'/>Home</Link>
+                    </li>
+                    <li className={pathname == '/about' && "active-navbar-item"} >
+                        <Link to='/about'><BsBag className='icon'/>Swiggy Corporate</Link>
+                    </li>
+                    <li className={pathname == '/offers' && "active-navbar-item"} >
+                        <Link to='/offers'><RiDiscountPercentLine className='icon'/>Offers</Link>
+                    </li>
+                    <li className={pathname == '/contact' && "active-navbar-item"} >
+                        <Link to='/contact'><IoHelpBuoyOutline className='icon'/>Help</Link>
+                    </li>
+                    <li className={pathname == '/signin' && "active-navbar-item"} >
+                        <Link to='/signin'><IoPersonOutline className='icon'/>Sign in</Link>
+                    </li>
+                    <li className={pathname == '/cart' && "cartNav-active"} >
+                        <Link to='/cart'><BsCart2 className='icon'/>Cart <span className="cart-count">{cart?.length}</span></Link>
+                    </li>
                     {/* {onlineStatus? <li>Online ✅</li> : <li>Offline 🔴</li>} */}
                 </ul>
             </div>
