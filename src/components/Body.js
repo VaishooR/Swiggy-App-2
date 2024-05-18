@@ -16,10 +16,12 @@ const Body = () => {
         setsearchList(restaurantList)
     }
     const handleRatings = () =>{
+        setsearchList(restaurantList)
         const filterRatings = restaurantList.filter(rate => rate.info.avgRating >= 4.3);
         setsearchList(filterRatings);
     }
     const handleCost = () =>{
+        setsearchList(restaurantList) 
         const filterCost = restaurantList.filter(item => {
             const costForTwo = Number(item.info.costForTwo.replace(/\D/g, ''));
             return costForTwo < 250; 
@@ -27,6 +29,7 @@ const Body = () => {
         setsearchList(filterCost);    
     }
     const handleDeliveryTime = () =>{
+        setsearchList(restaurantList)
         const filterDeliveryTime = restaurantList.filter(item =>{
             const deliveryTime = item.info.sla.deliveryTime
             return deliveryTime <= 20;
@@ -34,6 +37,7 @@ const Body = () => {
         setsearchList(filterDeliveryTime)
     }
     const handleNearBy = () => {
+        setsearchList(restaurantList)
         const filterNearBy = restaurantList.filter(item =>{
             const nearBy = item.info.sla.lastMileTravel
             return nearBy <= 3
@@ -65,9 +69,8 @@ const Body = () => {
         const swiggyApiData = await swiggyApi?.json();
         const restaurantsFromApi = swiggyApiData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
         setshowShimmer(false)
-        // setrestaurantList(restaurantsFromApi);                               // We are setting the API value for "restaurantList" variable only once. And never updating it.
+        setrestaurantList(restaurantsFromApi);                                  // We are setting the API value for "restaurantList" variable only once. And never updating it.
         // setsearchList(restaurantsFromApi);                                   // We are setting the API value for "searchList".
-        setrestaurantList((restaurantList)=>[...restaurantList,...restaurantsFromApi]); 
         setsearchList((searchList)=>[...searchList,...restaurantsFromApi]); 
     }
 
@@ -91,13 +94,14 @@ const Body = () => {
             </div>
             
             <div className="cardContainer-comp">
-                {/* {searchList.length === 0 && <h1>No Results</h1>} */}
-                {searchList?.map((data)=>(  
-                    <Link to={"/restaurants/"+data.info.id} key={data.info.id}><Card data={data} /></Link>                                  // Mapping and displaying "searchList" data.   
+                {searchList?.map((data,i)=>(  
+                    <Link to={"/restaurants/"+data.info.id} key={i}><Card data={data} /></Link>                                  // Mapping and displaying "searchList" data.   
                 ))}
             </div>
 
-            {showShimmer && <Shimmer/>}      
+            {showShimmer && <Shimmer/>}  
+            {searchList.length === 0 && <h1 style={{textAlign: 'center'}}>No Results</h1>}
+    
         </div>
     )
 }
