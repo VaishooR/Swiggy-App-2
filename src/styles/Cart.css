@@ -126,3 +126,13 @@
     padding-left: 70px;
     padding-top: 65px;
 }
+
+.cost-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 3px 0;
+}
+  
+.to-pay {
+  font-weight: bold;
+}

@@ -20,6 +20,9 @@ const Cart = () => {
   const handleRemoveCartItems = (id) => {
     dispatch(removeCartItem(id));
   }
+
+  const fees = cart.length === 0 ? 0 : { platform: 5, delivery: 45, gst: 50 };
+  const total = cart.length === 0 ? 0 : totalCost + fees.platform + fees.delivery + fees.gst;
   
   return (
     <div className="cart">
@@ -65,30 +68,17 @@ const Cart = () => {
       {/* cart-billing-info */}
       <div className="cart-billing-info">
         <div className="cart-billing-info-content">
+
           <div className="checkout-container">
-            <div>SubTotal ({cart.length}) Items</div>
-            <div style={{display:"flex",justifyContent: "space-between",margin:"3px 0px"}}>
-              <span>Item Total</span>
-              <span>Rs {cart.length === 0 ? 0 : totalCost }</span>
-            </div>
-            <div style={{display:"flex",justifyContent: "space-between",margin:"3px 0px"}}>
-              <span>Platform fee</span>
-              <span>Rs {cart.length === 0 ? 0 : 5 }</span>
-            </div>
-            <div style={{display:"flex",justifyContent: "space-between",margin:"3px 0px"}}>
-              <span>Delivery Fee | 13.7 kms</span>
-              <span>Rs {cart.length === 0 ? 0 : 45 }</span>
-            </div>
-            <div style={{display:"flex",justifyContent: "space-between",margin:"3px 0px"}}>
-              <span>GST and Restaurant Charges</span>
-              <span>Rs {cart.length === 0 ? 0 : 50 }</span>
-            </div>
-            <div style={{display:"flex",justifyContent: "space-between"}}>
-              <span className="to-pay">To Pay</span>
-              <span>Rs {cart.length === 0 ? 0 : (totalCost + 100)}</span>
-            </div>
-            <button className={cart.length === 0 ? "pay-btn-disabled" : "pay-btn" } disabled={cart.length === 0}>Proceed To Pay</button>
+          <div>SubTotal ({cart.length}) Items</div>
+            <div className="cost-item"><span>Item Total</span><span>Rs {totalCost || 0}</span></div>
+            <div className="cost-item"><span>Platform fee</span><span>Rs {fees.platform || 0}</span></div>
+            <div className="cost-item"><span>Delivery Fee | 13.7 kms</span><span>Rs {fees.delivery || 0}</span></div>
+            <div className="cost-item"><span>GST and Restaurant Charges</span><span>Rs {fees.gst || 0}</span></div>
+            <div className="cost-item"><span className="to-pay">To Pay</span><span>Rs {total}</span></div>
+            <button className={cart.length === 0 ? "pay-btn-disabled" : "pay-btn"} disabled={cart.length === 0}>Proceed To Pay</button>
           </div>
+
           <div>
             <div>Address:</div>
             <div style={{paddingTop:"10px"}}>  
@@ -98,6 +88,7 @@ const Cart = () => {
             <p style={{paddingTop:"2px"}}>Zip code:  500071</p>
             </div>
           </div>
+          
         </div>
       </div>
     </div>
